@@ -1,5 +1,7 @@
 import java.util.Comparator;
 
+//implement in driver
+
 public class BinarySearchTree<Task> {
     private Node root;
     private Comparator<Task> com;
