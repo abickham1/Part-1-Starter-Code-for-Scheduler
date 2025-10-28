@@ -11,10 +11,10 @@ public class PriorityQueue<Task> {
     public void insert(Task value, int priority){
         bst.insert(value);
     }
-    public boolean findMin() {
+    public Task findMin() {
         return bst.getMin(); // or getMax(), depending on comparator
     }
-    public boolean deleteMin(){
+    public Task deleteMin(){
         return bst.deleteMin();
     }
 

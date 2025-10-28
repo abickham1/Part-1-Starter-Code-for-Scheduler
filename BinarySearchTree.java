@@ -41,43 +41,52 @@ public class BinarySearchTree<Task> {
         return root;
     }
 
-    public boolean getMin() {
-        return getMinRecursion() != null;
+    public Task getMin() {
+        return getMinRecursion(root);
     }
 
-    private Node getMinRecursion(){
+    private Task getMinRecursion(Node root){
         //Node current =
         if(root == null){
             return null;
         }
         if(root.left == null){
-            return (Node) root.value;
+            return root.value;
         }
-        return root.left = getMinRecursion();
+        return getMinRecursion(root.left);
     }
 
-    public boolean deleteMin() {
-        return deleteMinRecursion() != null;
-    }
-
-    private Task deleteMinRecursion(){
-        if (root == null) {
-            return null;
-        }
-        if(root.left == null){
+    public Task deleteMin() {
+        if (root == null) return null;
+        if (root.left == null) {
             Task min = root.value;
             root = root.right;
             return min;
         }
-
-        Node current = root.left;
-
-         current = getMinRecursion();
-         Task min = current.value;
-         root.left = current.right;
-
-         return min;
+        return deleteMinRecursion(root);
     }
+
+
+    private Task deleteMinRecursion(Node node) {
+        if (node == null) return null;
+
+        if (node.left == null) {
+            Task min = node.value;
+            // bypass the node
+            return min;
+        }
+
+        // Recursively go left
+        if (node.left.left == null) {
+            // node.left is the min
+            Task min = node.left.value;
+            node.left = node.left.right;
+            return min;
+        } else {
+            return deleteMinRecursion(node.left);
+        }
+    }
+
 
     public void delete(Task value){
         root = deleteRecursion(root, value);
